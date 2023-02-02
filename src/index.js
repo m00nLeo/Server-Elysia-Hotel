@@ -41,10 +41,16 @@ app.get("/", (req, res) => {
 
 // Run db (database) with MongoDB --> đợi server connect tới database hoàn thành thì server mới truyền qua lại client
 mongoose.set("strictQuery", false);
-mongoose.connect(uri).then(() => {
-  console.log("Connected to database");
-  //RUN Server
-  app.listen(port, () => {
-    console.log(`server is running on port ${port}`);
-  });
+const connect = async () => {
+  try {
+    await mongoose.connect(uri);
+    console.log("Connected to database");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+app.listen(port, () => {
+  connect();
+  console.log(`server is running on port ${port}`);
 });
