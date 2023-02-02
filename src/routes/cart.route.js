@@ -44,8 +44,8 @@ router.post("/add", async (req, res) => {
 // });
 
 // DELETE (Delete a product)
-router.delete("/:roomId", async (req, res) => {
-  const cartProduct = await Cart.findByIdAndDelete(req.params.productId); //A.findOneAndDelete(conditions)
+router.delete("/:Id", async (req, res) => {
+  const cartProduct = await Cart.findByIdAndDelete(req.params.Id); //A.findOneAndDelete(conditions)
 
   res.json(cartProduct);
 });
