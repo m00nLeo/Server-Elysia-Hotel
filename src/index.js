@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
 mongoose.set("strictQuery", false);
 const connect = async () => {
   try {
-    await mongoose.connect(uri);
+    await mongoose.connect(String(uri));
     console.log("Connected to database");
   } catch (error) {
     console.log(error);
