@@ -3,8 +3,6 @@ import Cart from "../model/cart";
 
 const router = Router();
 
-//////////////////////////////////////////////////////// PRODUCTS //////////////////////////////////////////////////////////////
-
 // Get all products
 router.get("/", async (request, response) => {
   const cartSample = await Cart.find(request.query);
@@ -33,19 +31,19 @@ router.post("/add", async (req, res) => {
 });
 
 // UPDATE (Put) a product by Id
-// router.put("/:productId", async (req, res) => {
-//   const updateProduct = await Product.findByIdAndUpdate(
-//     req.params.productId,
-//     req.body,
-//     { new: true }
-//   );
+router.put("/:Id", async (req, res) => {
+  const cart = await Cart.findByIdAndUpdate(
+    req.params.Id,
+    req.body,
+    { new: true }
+  );
 
-//   res.json(updateProduct);
-// });
+  res.json(cart);
+});
 
 // DELETE (Delete a product)
 router.delete("/:Id", async (req, res) => {
-  const cartProduct = await Cart.findByIdAndDelete(req.params.Id); //A.findOneAndDelete(conditions)
+  const cartProduct = await Cart.findByIdAndDelete(req.params.Id); 
 
   res.json(cartProduct);
 });
